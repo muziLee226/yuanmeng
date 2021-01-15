@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zytb999.aspira.mapper.IArticleMapper">
+
+    <select id="selectArticleByTabsId" resultType="com.zytb999.aspira.domian.Article">
+        SELECT ID,ARTICLE_LOGO,LABEL,TITLE,PUBLISH_TIME,CONTENT,URL
+        FROM T_ARTICLE
+        WHERE TYPE=#{tabsId}
+        ORDER BY PUBLISH_TIME DESC;
+    </select>
+    <select id="getHotNews" resultType="com.zytb999.aspira.domian.Article">
+        SELECT ARTICLE_LOGO,LABEL,TITLE,PUBLISH_TIME,CONTENT,URL
+        FROM T_ARTICLE
+        ORDER BY PUBLISH_TIME DESC LIMIT 5
+    </select>
+    <select id="getTopLine" resultType="com.zytb999.aspira.domian.Article">
+        SELECT CONTENT FROM T_ARTICLE WHERE TYPE=7
+        ORDER BY PUBLISH_TIME DESC LIMIT 3
+    </select>
+</mapper>

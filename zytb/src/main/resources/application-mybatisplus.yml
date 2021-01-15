@@ -1,0 +1,29 @@
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.zytb999.aspira.domain
+  configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+    mapUnderscoreToCamelCase: true
+    #全局地开启或关闭配置文件中的所有映射器已经配置的任何缓存，默认为 true
+    cacheEnabled: false
+    #配置JdbcTypeForNull, oracle数据库必须配置
+    jdbc-type-for-null: 'null'
+    #指定当结果集中值为 null 的时候是否调用映射对象的 Setter（Map 对象时为 put）方法，通常运用于有 Map.keySet() 依赖或 null 值初始化的情况。
+    #callSettersOnNulls: true
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增",NONE,"该类型为未设置主键类型(将跟随全局)",INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID",ID_WORKER_STR字符串全局唯一ID (idWorker 的字符串表示);
+      id-type: UUID
+      #表名、是否使用下划线命名，默认数据库表使用下划线命名
+      table-underline: true
+      #是否开启大写命名，默认不开启
+      capital-mode: false
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断",NOT_EMPTY:"非空判断",DEFAULT 默认的,一般只用于注解里,在全局里代表 NOT_NULL,在注解里代表 跟随全局,NEVER不加入 SQL
+      insert-strategy: NOT_EMPTY
+      update-srategy: NOT_EMPTY
+      #select-strategy: NOT_EMPTY
+      # Sequence序列接口实现类配置
+      #key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+      #逻辑删除配置（下面2个配置）
+      logic-delete-value: 1
+      logic-not-delete-value: 0

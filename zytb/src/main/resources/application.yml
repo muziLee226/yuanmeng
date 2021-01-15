@@ -1,0 +1,50 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /
+    session:
+      cookie:
+        name: BIUSID
+spring:
+  # jackson全局配置
+  jackson:
+    # 日期的时区
+    time-zone: GMT+8
+    # 日期默认格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    host: 127.0.0.1
+  profiles:
+    active: dev
+    include: druid,shiro,mybatisplus
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/gkzy999?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.0.99:3306/gkzy999?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://8.136.152.150:3306/gkzy999?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql:///test?characterEncoding=utf8&useSSL=false&&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+#    password: Yun123
+    sql-script-encoding: utf-8
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+logging:
+  level:
+    com.zytb999: debug
+  file:
+    path:  .logs
+#分页插件配置
+pagehelper:
+  auto-dialect: mysql #设置语言
+  reasonable: true
+  support-methods-arguments: true
+  page-size-zero: true
+  params: count=countSql
